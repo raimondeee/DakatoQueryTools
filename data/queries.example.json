@@ -1,0 +1,12 @@
+[
+  {
+    "id": "00000000-0000-4000-8000-000000000001",
+    "name": "Get Emails From Salesforce ID",
+    "target": "sqllab",
+    "hasValuesPlaceholder": true,
+    "notes": "",
+    "sql": "WITH account_list AS (\n    SELECT id_account, row_num\n    FROM (\n        VALUES \n            {{VALUES_PLACEHOLDER}}\n    ) AS t(id_account, row_num)\n)\nSELECT \n    al.id_account AS salesforce_account_id,\n    a.id_airbnb_user AS user_id,\n    p.dim_email AS email,\n    p.dim_account_name AS salesforce_account_name,\n    p.dim_parent_account_name AS parent_account_name\nFROM account_list al\nLEFT JOIN itx.\"dim_salesforce_nimbus_accounts_pii$latest\" p \n    ON al.id_account = p.id_account\nLEFT JOIN itx.\"dim_salesforce_nimbus_accounts$latest\" a\n    ON al.id_account = a.id_account\nORDER BY al.row_num",
+    "createdAt": "2026-01-01T00:00:00.000Z",
+    "updatedAt": "2026-01-01T00:00:00.000Z"
+  }
+]

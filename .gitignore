@@ -1,0 +1,7 @@
+node_modules
+dist
+.DS_Store
+*.local
+
+# User query data (optional — remove this line to commit shared templates)
+data/queries.json
